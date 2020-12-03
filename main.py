@@ -1,0 +1,16 @@
+from ops.argparser import argparser
+import os
+
+if __name__ == "__main__":
+    params = argparser()
+    #print(params)
+    if params['mode']==0:
+        input_path = os.path.abspath(params['F'])  # one pdb file
+        os.environ['CUDA_VISIBLE_DEVICES'] = params['gpu']
+        from predict.predict_single_input import predict_single_input
+        predict_single_input(input_path,params)
+
+    elif params['mode']==1:
+        input_path=os.path.abspath(params['F'])
+
+
