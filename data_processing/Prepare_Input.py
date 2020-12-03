@@ -39,12 +39,12 @@ def Prepare_Input(structure_path):
     valid = np.zeros((receptor_count + ligand_count,))
     valid[:receptor_count] = 1
     input_file=os.path.join(root_path,"Input.npz")
-    sample = {
-        'H': H.tolist(),
-        'A1': agg_adj1.tolist(),
-        'A2': agg_adj2.tolist(),
-        'V': valid,
-        'key': structure_path,
-    }
-    np.save(input_file, sample)
+    # sample = {
+    #     'H': H.tolist(),
+    #     'A1': agg_adj1.tolist(),
+    #     'A2': agg_adj2.tolist(),
+    #     'V': valid,
+    #     'key': structure_path,
+    # }
+    np.savez(input_file,  H=H, A1=agg_adj1, A2=agg_adj2, V=valid)
     return input_file
