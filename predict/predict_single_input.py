@@ -53,14 +53,14 @@ def predict_single_input(input_path,params):
     if fold_choice != -1:
         model_path = os.path.join(os.getcwd(), "best_model")
         model_path = os.path.join(model_path, "fold" + str(fold_choice))
-        model_path=os.path.join(model_path)
+        model_path=os.path.join(model_path,"checkpoint.pth.tar")
         model,device=init_model(model_path,params)
     else:
-        model_path = os.path.join(os.getcwd(), "best_model")
+        root_model_path = os.path.join(os.getcwd(), "best_model")
         model_list=[]
         for k in range(1,4):
-            model_path = os.path.join(model_path, "fold" + str(k))
-            model_path = os.path.join(model_path)
+            model_path = os.path.join(root_model_path, "fold" + str(k))
+            model_path = os.path.join(model_path,"checkpoint.pth.tar")
             model,device = init_model(model_path, params)
             model_list.append(model)
         model=model_list
