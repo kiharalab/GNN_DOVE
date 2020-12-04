@@ -44,6 +44,7 @@ The illustration of graph neural network (GNN) with attention and gate-augmented
 ## Pre-required software
 Python 3 : https://www.python.org/downloads/    
 rdkit: https://www.rdkit.org/docs/Install.html
+chimera (optional): https://www.cgl.ucsf.edu/chimera/download.html
 
 ## Installation  
 ### 1. [`Install git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
@@ -86,8 +87,9 @@ conda deactivate(If you want to exit)
 python3 main.py
   -h, --help            show this help message and exit
   -F F                  decoy example path
-  --mode MODE           0: predicting for single docking model 1: predicting
-                        and sorting for a list of docking models
+  --mode MODE           0: evaluate for single docking model 
+                        1: evaluate for multi docking models
+                        2: visualize attention for w/w.o intermolecular graphs from interface region
   --gpu GPU             Choose gpu id, example: '1,2'(specify use gpu 1 and 2)
   --batch_size          batch_size
   --num_workers         number of workers
@@ -102,6 +104,45 @@ python3 main.py
   --fold FOLD           specify fold model for prediction
 
 ```
+### 1 Evaluate single protein-complex
+```
+python main.py --mode=0 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
+```
+Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions.    
+The output will be kept in [Predict_Result/Single_Target]. The prediction result will be kept in Predict.txt.
+
+### 2 Evaluate many protein-complexes
+```
+python main.py --mode=1 -F [pdb_dir] --gpu=[gpu_id] --fold=[fold_model_id]
+```
+Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions.    
+The output will be kept in [Predict_Result/Multi_Target]. The prediction results will be kept in Predict.txt.
+
+### 3 Visualize attention for interface region
+```
+python main.py --mode=2 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
+```
+Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where 1,2,3,4 can be used to choose different model for predictions.         
+The output will be kept in [Predict_Result/Visulize_Target]. The attention of graph with/without intermolecular will be saved in attention2_receptor.pdb + attention2_ligand.pdb and attention1_receptor.pdb + attention1_ligand.pdb, respectively. To visualize attention weights, please use chimera to visualize them: https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/bfactor.html. We saved the weights for each atom in the b-factor column, you can also visualize it by pymol.     
+Here is an visualization example:
+
+<p align="center">
+  <img src="figure/attention.jpeg" alt="network" width="80%">
+</p> 
+
+The left panel represents the graph with intermolecular interaction (attention2) and the right panel shows the graph only with covalent bonds (attention1).
+
+
+## Example
+### Input
+1 Correct protein-Complex example: https://github.com/kiharalab/GNN_DOVE/blob/main/example/input/correct.pdb     
+2 Incorrect protein-Complex example: https://github.com/kiharalab/GNN_DOVE/blob/main/example/input/incorrect.pdb
+### Output
+1 Single protein-complex output (mode=0): https://github.com/kiharalab/GNN_DOVE/tree/main/example/output/single    
+2 Multi protein-complexes output (mode=1): https://github.com/kiharalab/GNN_DOVE/tree/main/example/output/multi      
+3 Visualize graph attention (mode=2): https://github.com/kiharalab/GNN_DOVE/tree/main/example/output/visualize
+
+
 
 
 
