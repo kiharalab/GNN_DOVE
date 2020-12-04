@@ -51,7 +51,7 @@ def predict_multi_input(input_path, params):
         shutil.copy(input_pdb_path, structure_path)
         input_file = Prepare_Input(structure_path)
         Input_File_List.append(input_file)
-    list_npz = [Input_File_List]
+    list_npz = Input_File_List
     dataset = Single_Dataset(list_npz)
     dataloader = DataLoader(dataset, params['batch_size'], shuffle=False,
                             num_workers=params['num_workers'],
