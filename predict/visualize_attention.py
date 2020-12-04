@@ -64,7 +64,7 @@ def visualize_attention(input_path,params):
     np.save(tmp_save_path1, Final_atten1)
     np.save(tmp_save_path2, Final_atten2)
     receptor_path=os.path.join(save_path,"Input.rinterface")
-    ligand_path=os.path.join(save_path,"Input.linterfacee")
+    ligand_path=os.path.join(save_path,"Input.linterface")
     rcount = 0
     with open(receptor_path, "r") as file:
         line = file.readline()
