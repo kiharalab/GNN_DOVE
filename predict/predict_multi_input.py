@@ -20,6 +20,10 @@ def predict_multi_input(input_path, params):
     mkdir(save_path)
     save_path = os.path.join(save_path, "Fold_" + str(params['fold']) + "_Result")
     mkdir(save_path)
+    input_path=os.path.abspath(input_path)
+    folder_name=os.path.split(input_path)[1]
+    save_path = os.path.join(save_path, folder_name)
+    mkdir(save_path)
 
     fold_choice = params['fold']
     # loading the model
