@@ -75,6 +75,8 @@ def predict_multi_input(input_path, params):
         file.write("Input\tScore\n")
         for k in range(len(Input_File_List)):
             file.write(Study_Name[k] + "\t%.4f\n" % Final_Pred[k])
+    pred_sort_path=os.path.join(save_path,"Predict_sort.txt")
+    os.system("sort -n -k 2 "+pred_path+" >"+pred_sort_path)
 
 
 
