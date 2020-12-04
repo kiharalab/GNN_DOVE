@@ -12,5 +12,10 @@ if __name__ == "__main__":
 
     elif params['mode']==1:
         input_path=os.path.abspath(params['F'])
+        os.environ['CUDA_VISIBLE_DEVICES'] = params['gpu']
+        from predict.predict_multi_input import predict_multi_input
+
+        predict_multi_input(input_path, params)
+    
 
 
