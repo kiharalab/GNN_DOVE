@@ -81,5 +81,27 @@ conda activate GNN_DOVE
 conda deactivate(If you want to exit) 
 ```
 
+## Usage
+```
+python3 main.py
+  -h, --help            show this help message and exit
+  -F F                  decoy example path
+  --mode MODE           0: predicting for single docking model 1: predicting
+                        and sorting for a list of docking models
+  --gpu GPU             Choose gpu id, example: '1,2'(specify use gpu 1 and 2)
+  --batch_size          batch_size
+  --num_workers         number of workers
+  --n_graph_layer       number of GNN layer
+  --d_graph_layer       dimension of GNN layer
+  --n_FC_layer          number of FC layer
+  --d_FC_layer          dimension of FC layer
+  --initial_mu          initial value of mu
+  --initial_dev         initial value of dev
+  --dropout_rate        dropout_rate
+  --seed SEED           random seed for shuffling
+  --fold FOLD           specify fold model for prediction
+
+```
+
 
 
