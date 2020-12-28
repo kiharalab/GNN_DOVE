@@ -59,13 +59,13 @@ You have two options to install dependency on your computer:
 ##### 3.1.1[`install pip`](https://pip.pypa.io/en/stable/installing/).
 ##### 3.1.2  Install dependency in command line.
 ```
-pip3 install -r requirements.txt --user
+pip install -r requirements.txt --user
 ```
 If you encounter any errors, you can install each library one by one:
 ```
-pip3 install torch==1.7.0
-pip3 install numpy==1.18.1
-pip3 install scipy==1.4.1
+pip install torch==1.7.0
+pip install numpy==1.18.1
+pip install scipy==1.4.1
 ```
 
 #### 3.2 Install with anaconda
@@ -109,14 +109,22 @@ python3 main.py
 python main.py --mode=0 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
 Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions.    
-The output will be kept in [Predict_Result/Single_Target]. The prediction result will be kept in Predict.txt.
+The output will be kept in [Predict_Result/Single_Target]. The prediction result will be kept in Predict.txt.    
+##### Example Command:  
+```
+python main.py --mode=0 -F=example/input/correct.pdb --gpu=0 --fold=-1
+```
 
 ### 2 Evaluate many protein-complexes
 ```
 python main.py --mode=1 -F [pdb_dir] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
 Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions.    
-The output will be kept in [Predict_Result/Multi_Target]. The prediction results will be kept in Predict.txt.
+The output will be kept in [Predict_Result/Multi_Target]. The prediction results will be kept in Predict.txt.   
+##### Example Command:  
+```
+python main.py --mode=1 -F=example/input --gpu=0 --fold=-1
+```
 
 ### 3 Visualize attention for interface region
 ```
@@ -124,6 +132,10 @@ python main.py --mode=2 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
 Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where 1,2,3,4 can be used to choose different model for predictions.         
 The output will be kept in [Predict_Result/Visulize_Target]. The attention of graph with/without intermolecular will be saved in attention2_receptor.pdb + attention2_ligand.pdb and attention1_receptor.pdb + attention1_ligand.pdb, respectively. To visualize attention weights, please use chimera to visualize them: https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/bfactor.html. We saved the weights for each atom in the b-factor column, you can also visualize it by pymol.     
+##### Example Command:  
+```
+python main.py --mode=2 -F=example/input/correct.pdb --gpu=0 --fold=-1
+```
 Here is an visualization example:
 
 <p align="center">
