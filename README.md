@@ -43,7 +43,7 @@ The illustration of graph neural network (GNN) with attention and gate-augmented
 
 ## Pre-required software
 Python 3 : https://www.python.org/downloads/    
-rdkit: https://www.rdkit.org/docs/Install.html
+rdkit: https://www.rdkit.org/docs/Install.html    
 chimera (optional): https://www.cgl.ucsf.edu/chimera/download.html
 
 ## Installation  
