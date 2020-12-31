@@ -18,6 +18,7 @@ Contact: Daisuke Kihara (dkihara@purdue.edu)
 
 ## Citation:
 [Protein Docking Model Evaluation by Graph Neural Networks](https://www.biorxiv.org/content/10.1101/2020.12.30.424859v1)  
+```
 @article {Wang2020.12.30.424859,
 	author = {Wang, Xiao and Flannery, Sean T and Kihara, Daisuke},
 	title = {Protein Docking Model Evaluation by Graph Neural Networks},
@@ -29,6 +30,7 @@ Contact: Daisuke Kihara (dkihara@purdue.edu)
 	eprint = {https://www.biorxiv.org/content/early/2020/12/31/2020.12.30.424859.full.pdf},
 	journal = {bioRxiv}
 }
+```
 
 ## Introduction
 Physical interactions of proteins play key roles in many important cellular processes. Therefore, it is crucial to determine the structure of protein complexes to understand molecular mechanisms of interactions. To complement experimental approaches, which usually take a considerable amount of time and resources, various computational methods have been developed to predict the structures of protein complexes. In computational modeling, one of the challenges is to identify near-native structures from a large pool of generated models. Here, we developed a deep learning-based approach named Graph Neural Network-based DOcking decoy eValuation scorE (GNN-DOVE). To evaluate a protein docking model, GNN-DOVE extracts the interface area and represents it as a graph. The chemical properties of atoms and the inter-atom distances are used as features of nodes and edges in the graph. GNN-DOVE was trained and validated on docking models in the Dockground database. GNN-DOVE performed better than existing methods including DOVE, which is our previous development that uses convolutional neural network on voxelized structure models.
