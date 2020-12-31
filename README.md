@@ -5,7 +5,7 @@
    <img src="https://img.shields.io/badge/Language-python3-green">
    <img src="https://img.shields.io/badge/dependencies-tested-green">
    <img src="https://img.shields.io/badge/licence-GNU-green">
-</a>  
+</a>   
 
 GNN-Dove is a computational tool using graph neural network that can evaluate the quality of docking protein-complexes.  
 
@@ -17,6 +17,8 @@ Contact: Daisuke Kihara (dkihara@purdue.edu)
 
 
 ## Citation:
+[Protein Docking Model Evaluation by Graph Neural Networks](https://www.biorxiv.org/content/10.1101/2020.12.30.424859v1)  
+
 Xiao Wang, Sean T Flannery & Daisuke Kihara. Protein Docking Model Evaluation by Graph Neural Networks(2020).
 
 
