@@ -120,7 +120,7 @@ python3 main.py
 ```
 python main.py --mode=0 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
-Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions.    
+Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions. You can specify --fold=5 to use the pretrained model with a much larger benchmark (Dockground+Zdock).
 The output will be kept in [Predict_Result/Single_Target]. The prediction result will be kept in Predict.txt.    
 ##### Example Command (Fold 1 Model):  
 ```
@@ -131,19 +131,44 @@ python main.py --mode=0 -F=example/input/correct.pdb --gpu=0 --fold=1
 ```
 python main.py --mode=1 -F [pdb_dir] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
-Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions.    
+Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions. You can specify --fold=5 to use the pretrained model with a much larger benchmark (Dockground+Zdock).
 The output will be kept in [Predict_Result/Multi_Target]. The prediction results will be kept in Predict.txt.   
 ##### Example Command (All Model):  
 ```
 python main.py --mode=1 -F=example/input --gpu=0 --fold=-1
 ```
 
-### 3 Visualize attention for interface region
+### 3 Evaluate with model pretrained on Dockground+Zdock benchmark
+#### 3.1 Evaluate single protein-complex
+```
+python main.py --mode=0 -F [pdb_file] --gpu=[gpu_id] --fold=5
+```
+Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id.
+The output will be kept in [Predict_Result/Single_Target]. The prediction result will be kept in Predict.txt.    
+##### Example Command:  
+```
+python main.py --mode=0 -F=example/input/correct.pdb --gpu=0 --fold=5
+```
+
+#### 3.2 Evaluate many protein-complexes
+```
+python main.py --mode=1 -F [pdb_dir] --gpu=[gpu_id] --fold=5
+```
+Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id.
+The output will be kept in [Predict_Result/Multi_Target]. The prediction results will be kept in Predict.txt.   
+##### Example Command (All Model):  
+```
+python main.py --mode=1 -F=example/input --gpu=0 --fold=5
+```
+
+
+### 4 Visualize attention for interface region
 ```
 python main.py --mode=2 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
 Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where 1,2,3,4 can be used to choose different model for predictions.         
 The output will be kept in [Predict_Result/Visulize_Target]. The attention of graph with/without intermolecular will be saved in attention2_receptor.pdb + attention2_ligand.pdb and attention1_receptor.pdb + attention1_ligand.pdb, respectively. To visualize attention weights, please use chimera to visualize them: https://www.cgl.ucsf.edu/chimera/docs/UsersGuide/tutorials/bfactor.html. We saved the weights for each atom in the b-factor column, you can also visualize it by pymol.     
+
 ##### Example Command (Fold 1 Model):  
 ```
 python main.py --mode=2 -F=example/input/correct.pdb --gpu=0 --fold=1
@@ -155,6 +180,7 @@ Here is an visualization example:
 </p> 
 
 The left panel represents the graph with intermolecular interaction (attention2) and the right panel shows the graph only with covalent bonds (attention1).
+
 
 
 ## Example
