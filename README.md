@@ -120,7 +120,7 @@ python3 main.py
 ```
 python main.py --mode=0 -F [pdb_file] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
-Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions. You can specify --fold=5 to use the pretrained model with a much larger benchmark (Dockground+Zdock).
+Here -F should specify a pdb file with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions. **(Recommend)You can specify --fold=5 to use the pretrained model with a much larger benchmark (Dockground+Zdock).**
 The output will be kept in [Predict_Result/Single_Target]. The prediction result will be kept in Predict.txt.    
 ##### Example Command (Fold 1 Model):  
 ```
@@ -131,14 +131,14 @@ python main.py --mode=0 -F=example/input/correct.pdb --gpu=0 --fold=1
 ```
 python main.py --mode=1 -F [pdb_dir] --gpu=[gpu_id] --fold=[fold_model_id]
 ```
-Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions. You can specify --fold=5 to use the pretrained model with a much larger benchmark (Dockground+Zdock).
+Here -F should specify the directory that inclues pdb files with Receptor chain ID 'A' and ligand chain ID 'B'; --gpu is used to specify the gpu id; --fold should specify the fold model you will use, where -1 denotes that you want to use the average prediction of 4 fold models and 1,2,3,4 will choose different model for predictions. **(Recommend)You can specify --fold=5 to use the pretrained model with a much larger benchmark (Dockground+Zdock).**
 The output will be kept in [Predict_Result/Multi_Target]. The prediction results will be kept in Predict.txt.   
 ##### Example Command (All Model):  
 ```
 python main.py --mode=1 -F=example/input --gpu=0 --fold=-1
 ```
 
-### 3 Evaluate with model pretrained on Dockground+Zdock benchmark
+### 3 Evaluate with model pretrained on Dockground+Zdock benchmark （Recommend）
 #### 3.1 Evaluate single protein-complex
 ```
 python main.py --mode=0 -F [pdb_file] --gpu=[gpu_id] --fold=5
