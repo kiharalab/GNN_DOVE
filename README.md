@@ -17,18 +17,18 @@ Contact: Daisuke Kihara (dkihara@purdue.edu)
 
 
 ## Citation:
-[Protein Docking Model Evaluation by Graph Neural Networks](https://www.biorxiv.org/content/10.1101/2020.12.30.424859v1)  
+[Protein Docking Model Evaluation by Graph Neural Networks](https://www.frontiersin.org/articles/10.3389/fmolb.2021.647915/full)  
 ```
-@article {Wang2020.12.30.424859,
-	author = {Wang, Xiao and Flannery, Sean T and Kihara, Daisuke},
-	title = {Protein Docking Model Evaluation by Graph Neural Networks},
-	elocation-id = {2020.12.30.424859},
-	year = {2020},
-	doi = {10.1101/2020.12.30.424859},
-	publisher = {Cold Spring Harbor Laboratory},
-	URL = {https://www.biorxiv.org/content/early/2020/12/31/2020.12.30.424859},
-	eprint = {https://www.biorxiv.org/content/early/2020/12/31/2020.12.30.424859.full.pdf},
-	journal = {bioRxiv}
+@ARTICLE{10.3389/fmolb.2021.647915,
+AUTHOR={Wang, Xiao and Flannery, Sean T. and Kihara, Daisuke},   	 
+TITLE={Protein Docking Model Evaluation by Graph Neural Networks},      	
+JOURNAL={Frontiers in Molecular Biosciences},      	
+VOLUME={8},      
+PAGES={402},     	
+YEAR={2021},      	  
+URL={https://www.frontiersin.org/article/10.3389/fmolb.2021.647915},       
+DOI={10.3389/fmolb.2021.647915},      
+ISSN={2296-889X},   
 }
 ```
 
