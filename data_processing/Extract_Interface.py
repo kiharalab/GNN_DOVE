@@ -64,13 +64,14 @@ def Extract_Interface(pdb_path):
         pre_residue_id = 0
         pre_chain_id = line[21]
         first_change=True
+        b=0
         while line:
-
             dat_in = line[0:80].split()
             if len(dat_in) == 0:
                 line = file.readline()
                 continue
-
+            if (dat_in[0] == 'TER'):
+                b=b+1
             if (dat_in[0] == 'ATOM'):
                 chain_id = line[21]
                 residue_id = int(line[23:26])
@@ -81,34 +82,18 @@ def Extract_Interface(pdb_path):
                 residue_type = line[17:20]
                 # First try CA distance of contact map
                 atom_type = line[13:16].strip()
-                if chain_id=="B":
-                    goon=True
-                if (goon):
-                    if first_change:
-                        rlist.append(tmp_list)
-                        tmp_list = []
-                        tmp_list.append([x, y, z, atom_type, count_l])
-                        count_l += 1
-                        ligand_list.append(line)
-                        first_change=False
-                    else:
-                        ligand_list.append(line)  # used to prepare write interface region
-                        if pre_residue_type == residue_type:
-                            tmp_list.append([x, y, z, atom_type, count_l])
-                        else:
-                            llist.append(tmp_list)
-                            tmp_list = []
-                            tmp_list.append([x, y, z, atom_type, count_l])
-                        count_l += 1
-                else:
+                if b == 0:
+                    rlist.append(tmp_list)
+                    tmp_list = []
+                    tmp_list.append([x, y, z, atom_type, count_l])
+                    count_l += 1
                     receptor_list.append(line)
-                    if pre_residue_type == residue_type:
-                        tmp_list.append([x, y, z, atom_type, count_r])
-                    else:
-                        rlist.append(tmp_list)
-                        tmp_list = []
-                        tmp_list.append([x, y, z, atom_type, count_r])
-                    count_r += 1
+                else:
+                    llist.append(tmp_list)
+                    tmp_list = []
+                    tmp_list.append([x, y, z, atom_type, count_l])
+                    count_l += 1
+                    ligand_list.append(line)
 
                 atomid = int(dat_in[1])
                 chain_id = line[21]
@@ -122,10 +107,12 @@ def Extract_Interface(pdb_path):
     #write that into our path
     rpath=Write_Interface(final_receptor,pdb_path,".rinterface")
     lpath=Write_Interface(final_ligand, pdb_path, ".linterface")
+    print(rpath,lpath)
     return rpath,lpath
+
+
 @set_timeout(100000, after_timeout)
 def Form_interface(rlist,llist,receptor_list,ligand_list,cut_off=10):
-
     cut_off=cut_off**2
     r_index=set()
     l_index=set()
@@ -165,15 +152,22 @@ def Form_interface(rlist,llist,receptor_list,ligand_list,cut_off=10):
         for tmp_atom in residue:
             our_index=tmp_atom[4]
             final_receptor.append(receptor_list[our_index])
-
-    for residue in newllist:
-        for tmp_atom in residue:
-            our_index=tmp_atom[4]
-            #print (our_index)
-            final_ligand.append(ligand_list[our_index])
+    try:
+        for residue in newllist:
+            for tmp_atom in residue:
+                our_index=tmp_atom[4]
+                final_ligand.append(ligand_list[our_index])
+    except:
+        b=0
+        for residue in newllist:
+            for tmp_atom in residue:
+                our_index=b
+                final_ligand.append(ligand_list[our_index])
+                b=b+1
     print("After filtering the interface region, %d receptor, %d ligand"%(len(final_receptor),len(final_ligand)))
-
+    print(final_receptor,final_ligand)
     return final_receptor,final_ligand
+
 
 def Write_Interface(line_list,pdb_path,ext_file):
     new_path=pdb_path[:-4]+ext_file
