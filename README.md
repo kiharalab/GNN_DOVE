@@ -11,7 +11,7 @@ GNN-Dove is a computational tool using graph neural network that can evaluate th
 
 Copyright (C) 2020 Xiao Wang, Sean T Flannery, Daisuke Kihara, and Purdue University. 
 
-License: GPL v3 for academic use. (For commercial use, please contact us for different licensing.)
+License: GPL v3. (If you are interested in a different license, for example, for commercial use, please contact us.) 
 
 Contact: Daisuke Kihara (dkihara@purdue.edu)
 
